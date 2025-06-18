@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: body">
+<div>
+    <h2 th:text="${post.title}"></h2>
+    <p><small th:text="${post.category.name}"></small></p>
+    <p th:text="${post.content}"></p>
+    <a th:href="@{/posts}" class="btn btn-secondary">Back</a>
+</div>
+</html>
