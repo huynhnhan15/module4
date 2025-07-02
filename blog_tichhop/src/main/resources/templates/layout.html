@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Blog</title>
+</head>
+<body>
+<nav>
+    <a href="/posts">Tất cả bài viết</a>
+    <span th:each="c : ${categories}">
+            | <a th:href="@{/posts/category/{id}(id=${c.id})}" th:text="${c.name}"></a>
+        </span>
+</nav>
+<hr>
+<th:block th:replace="~{::content}"/>
+</body>
+</html>

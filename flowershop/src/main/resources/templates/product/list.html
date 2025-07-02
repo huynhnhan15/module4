@@ -9,7 +9,10 @@
 <div class="container mt-4">
     <h2 class="mb-4">DANH SÁCH SẢN PHẨM</h2>
     <div class="mt-4">
-        <a href="/cart" class="btn btn-outline-secondary">🛒 Xem giỏ hàng</a>
+        <a href="/cart" class="btn btn-outline-secondary">
+            🛒 Xem giỏ hàng
+            <span class="badge bg-danger ms-1" th:text="'(' + ${cartSize} + ')'">(0)</span>
+        </a>
     </div>
     <div class="row">
         <div class="col-md-3 mb-4" th:each="product : ${products}">

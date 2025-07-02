@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Trang chủ Blog</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+  <style>
+    .category-nav a {
+      margin-right: 8px;
+      margin-bottom: 5px;
+    }
+
+    .post-card {
+      padding: 1rem;
+      border: 1px solid #dee2e6;
+      border-radius: 10px;
+      background-color: #f8f9fa;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .post-card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    h2 {
+      color: #0d6efd;
+      margin-top: 1.5rem;
+    }
+
+    h4 a {
+      color: #0d6efd;
+      text-decoration: none;
+    }
+
+    h4 a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body class="container mt-4">
+
+<h2>🌸 Danh mục</h2>
+<nav class="mb-4 category-nav d-flex flex-wrap">
+  <a class="btn btn-outline-secondary btn-sm" href="/posts">Tất cả</a>
+  <span th:each="c : ${categories}">
+      <a class="btn btn-outline-primary btn-sm"
+         th:href="@{/posts/category/{id}(id=${c.id})}"
+         th:text="${c.name}"></a>
+    </span>
+</nav>
+
+<h2>📝 Bài viết mới nhất</h2>
+<div th:each="p : ${latestPosts}" class="post-card mb-4">
+  <h4>
+    <a th:href="@{/posts/detail/{id}(id=${p.id})}" th:text="${p.title}">Tiêu đề</a>
+  </h4>
+  <p class="text-muted small mb-2">
+    Ngày đăng: <span th:text="${#temporals.format(p.createdAt, 'dd/MM/yyyy HH:mm')}"></span> |
+    Danh mục: <span th:text="${p.category.name}"></span>
+  </p>
+  <p th:text="${#strings.abbreviate(p.content, 150)}" class="mb-3"></p>
+  <a th:href="@{/posts/detail/{id}(id=${p.id})}" class="btn btn-sm btn-outline-secondary">Đọc tiếp</a>
+</div>
+
+</body>
+</html>
