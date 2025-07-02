@@ -10,11 +10,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/posts")
 public class PostRestController {
+
     @Autowired
     private IPostService postService;
 
@@ -40,8 +42,15 @@ public class PostRestController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+
     @GetMapping("/search")
     public Page<Post> search(@RequestParam String keyword, Pageable pageable) {
         return postService.search(keyword, pageable);
+    }
+
+
+    @GetMapping("/categories")
+    public List<Category> getAllCategories() {
+        return categoryService.findAll();
     }
 }
