@@ -2,7 +2,6 @@ package com.codegym.blog_tichhop.model;
 
 import jakarta.persistence.*;
 
-@Entity
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
